@@ -1,7 +1,0 @@
-{
-  "name": "grocery_comparison",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react-vite"
-}

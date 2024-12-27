@@ -1,3 +1,0 @@
-GET http://localhost:5000/api/products/sort-by-price?name=Laptop&sort=asc
-
-
