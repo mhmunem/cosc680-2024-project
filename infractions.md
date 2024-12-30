@@ -8,5 +8,5 @@ Infractions per the [yellow card policy](https://eng-git.canterbury.ac.nz/cosc68
 | Kilo     | 0                | 0                  |
 | Munem    | 0                | 0                  |
 | Nandhini | 0                | 0                  |
-| Rico     | 0                | 0                  |
+| Rico     | 1                | 0                  |
 | Sam      | 0                | 0                  |
