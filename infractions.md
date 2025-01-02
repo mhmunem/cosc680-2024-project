@@ -5,8 +5,8 @@ Infractions per the [yellow card policy](https://eng-git.canterbury.ac.nz/cosc68
 | Name     | Minor Infraction | Major Infraction   |
 |----------|------------------|--------------------|
 | AJ       | 0                | 1                  |
-| Kilo     | 0                | 0                  |
-| Munem    | 0                | 0                  |
+| Kilo     | 0                | 1                  |
+| Munem    | 0                | 1                  |
 | Nandhini | 0                | 0                  |
-| Rico     | 1                | 0                  |
+| Rico     | 1                | 1                  |
 | Sam      | 0                | 0                  |
