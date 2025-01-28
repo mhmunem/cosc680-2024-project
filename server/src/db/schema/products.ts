@@ -1,4 +1,4 @@
-import { serial, integer, text, pgTable } from "drizzle-orm/pg-core"
+import { serial, integer, text, pgTable, index } from "drizzle-orm/pg-core"
 import { units } from "./units"
 import { category } from "./category"
 import { numericCasted } from "../../types/schema"
@@ -10,6 +10,9 @@ export const products = pgTable('products', {
     details: text(),
     amount: text(),
     image: text(),
-    unitID: integer().notNull().references(() => units.id),
-    categoryID: integer().notNull().references(() => category.id),
-})
+    unitID: integer("unit_id").notNull().references(() => units.id),
+    categoryID: integer("category_id").notNull().references(() => category.id),
+}, (table) => [
+    index("idx_product_unit_id").on(table.unitID),
+    index("idx_product_category_id").on(table.categoryID),
+]);
