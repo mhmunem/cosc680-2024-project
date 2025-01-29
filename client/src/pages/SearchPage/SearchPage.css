@@ -4,7 +4,13 @@ ion-header {
 }
 
 /* search bar syling */
+
+.toolbar{
+    position: relative;
+}
+
 .searchbar {
+    position: relative;
     margin: 4px auto;
     width: 70%;
     max-width: 600px;
@@ -318,7 +324,7 @@ ion-grid {
 
 .sortDropdown-menu {
     position: absolute;
-    z-index: 1000; 
+    z-index: 999; 
     top: 100%; 
     left: 0;
     width: 100%; 
@@ -402,12 +408,24 @@ ion-grid {
 
 
 .toolbar-container {
+    position: "relative";
     display: flex;
     align-items: center; /* Vertically align items */
     justify-content: space-between; /* Push left and right containers to opposite ends */
     width: 100%; /* Ensure the container spans the full width of its parent */
   }
 
+.searchHistory-container{
+    z-index: 1000;
+    margin: 20px auto;
+    width: 70%;
+    max-width: 300px;
+    position: fixed; 
+    left: 50%; 
+    transform: translateX(-50%);
+    top:  25px;
+    overflow-y: auto; 
+}
 .no-results-container {
     display: flex;
   justify-content: center;

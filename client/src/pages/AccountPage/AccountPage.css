@@ -11,3 +11,11 @@
   /* Push the centered element to the middle */
   margin-right: auto;
 }
+
+.setting{
+  display: flex; 
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%; 
+  padding-top: 60px; 
+}

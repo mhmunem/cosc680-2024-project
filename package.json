@@ -6,7 +6,8 @@
   "scripts": {
     "commitlint": "commitlint --edit",
     "commit": "commit",
-    "prepare": "husky"
+    "prepare": "husky",
+    "install-everything": "npm i && cd client && npm i && cd ../server  && npm i"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
