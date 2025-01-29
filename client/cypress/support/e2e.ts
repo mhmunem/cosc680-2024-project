@@ -15,3 +15,10 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+
+Cypress.on('fail', (err, _) => {
+    // always print the full page DOM whenever an error occurs
+    console.log(Cypress.$('body').html())
+    // re-throw error so test still fails
+    throw err
+})
