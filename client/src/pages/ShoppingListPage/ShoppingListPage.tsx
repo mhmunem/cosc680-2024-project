@@ -126,7 +126,7 @@ const ShoppingListPage: React.FC = () => {
         });
     }, [products, addedToCart, quantities]);
 
-    console.log('Base Cart Products =>', baseCartProducts);
+    //console.log('Base Cart Products =>', baseCartProducts);
     // filteredCartProducts: If a store is selected, only show items
     // whose storeID matches or are allowed via allowedProductIds.
     // Otherwise show all baseCartProducts.
