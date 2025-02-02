@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import {
     IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonLabel, IonButton, IonItem, IonSelect, IonImg,
     IonSelectOption, IonModal,
@@ -100,27 +100,8 @@ const ShoppingListPage: React.FC = () => {
             window.removeEventListener('storesUpdated', handleStoresUpdated);
         };
     }, []);
-    // baseCartProducts: items that the user actually put in the cart
-    const baseCartProducts = products.filter((item) => {
-        const storeIdStr = item.store_products.id.toString();
-        return addedToCart[storeIdStr] && (quantities[storeIdStr] || 0) > 0;
-    });
-
-    console.log('Base Cart Products =>', baseCartProducts);
-    // filteredCartProducts: If a store is selected, only show items
-    // whose storeID matches or are allowed via allowedProductIds.
-    // Otherwise show all baseCartProducts.
-    const filteredCartProducts = activeStoreId
-        ? baseCartProducts.filter(
-            (p) =>
-                p.store_products.storeID === activeStoreId ||
-                allowedProductIds.has(p.products.id)
-        )
-        : baseCartProducts;
-
-    console.log('Filtered Cart Products (activeStoreId =', activeStoreId, ') =>', filteredCartProducts);
-
-    const getOtherPrices = (product: Product | null): Product[] => {
+    // Use useCallback to memoize getOtherPrices function
+    const getOtherPrices = useCallback((product: Product | null): Product[] => {
         if (!product) return [];
         // If no store was selected in StorePage, show all possible store records
         if (selectedStoreIds.length === 0) {
@@ -135,30 +116,56 @@ const ShoppingListPage: React.FC = () => {
                 prod.store_products.productID === product.store_products.productID &&
                 selectedStoreIds.includes(prod.store_products.storeID)
         );
-    };
+    }, [products, selectedStoreIds]);
 
-    const totalPrice = filteredCartProducts.reduce((acc, item) => {
-        const storeIdStr = item.store_products.id.toString();
-        const q = quantities[storeIdStr] || 0;
-        // if no specific store is selected => just use item.store_products.price
-        // If activeStoreId is selected => find price matching storeID = activeStoreId
-        let priceToUse = item.store_products.price;// Defaults to the lowest “own-it” price first.
+    // baseCartProducts: items that the user actually put in the cart
+    const baseCartProducts = useMemo(() => {
+        return products.filter((item) => {
+            const storeIdStr = item.store_products.id.toString();
+            return addedToCart[storeIdStr] && (quantities[storeIdStr] || 0) > 0;
+        });
+    }, [products, addedToCart, quantities]);
 
-        if (activeStoreId) {
-            // Find the storeID === activeStoreId in getOtherPrices(item).
-            const records = getOtherPrices(item);
-            const matched = records.find(
-                (r) => r.store_products.storeID === activeStoreId
-            );
+    console.log('Base Cart Products =>', baseCartProducts);
+    // filteredCartProducts: If a store is selected, only show items
+    // whose storeID matches or are allowed via allowedProductIds.
+    // Otherwise show all baseCartProducts.
+    const filteredCartProducts = useMemo(() => {
+        return activeStoreId
+            ? baseCartProducts.filter(
+                (p) =>
+                    p.store_products.storeID === activeStoreId ||
+                    allowedProductIds.has(p.products.id)
+            )
+            : baseCartProducts;
+    }, [activeStoreId, baseCartProducts, allowedProductIds]);
 
-            if (matched) {
-                priceToUse = matched.store_products.price;
+    //console.log('Filtered Cart Products (activeStoreId =', activeStoreId, ') =>', filteredCartProducts);
+
+    const totalPrice = useMemo(() => {
+        return filteredCartProducts.reduce((acc, item) => {
+            const storeIdStr = item.store_products.id.toString();
+            const q = quantities[storeIdStr] || 0;
+            // if no specific store is selected => just use item.store_products.price
+            // If activeStoreId is selected => find price matching storeID = activeStoreId
+            let priceToUse = item.store_products.price;// Defaults to the lowest “own-it” price first.
+
+            if (activeStoreId) {
+                // Find the storeID === activeStoreId in getOtherPrices(item).
+                const records = getOtherPrices(item);
+                const matched = records.find(
+                    (r) => r.store_products.storeID === activeStoreId
+                );
+
+                if (matched) {
+                    priceToUse = matched.store_products.price;
+                }
+
             }
 
-        }
-
-        return acc + priceToUse * q;
-    }, 0);
+            return acc + priceToUse * q;
+        }, 0);
+    }, [filteredCartProducts, quantities, activeStoreId, getOtherPrices]);
 
     const updateCart = (newQuantities: { [key: string]: number }, newAddedToCart: { [key: string]: boolean }) => {
         localStorage.setItem('quantities', JSON.stringify(newQuantities));
@@ -230,7 +237,7 @@ const ShoppingListPage: React.FC = () => {
     };
 
     const handleSelectStore = (storeId: number | null) => {
-        console.log('Selected storeId:', storeId);
+        //console.log('Selected storeId:', storeId);
         setActiveStoreId(storeId);
 
         if (storeId) {
@@ -253,17 +260,17 @@ const ShoppingListPage: React.FC = () => {
             const missing = baseCartProducts
                 .filter((item) => {
                     const itemOtherPrices = getOtherPrices(item);
-                    console.log('itemOtherPrices for item', item, itemOtherPrices);
+                    //console.log('itemOtherPrices for item', item, itemOtherPrices);
 
                     const anyMatch = itemOtherPrices.some(
                         (p) => p.store_products.storeID === storeId
                     );
 
-                    console.log(
-                        `Comparing item ${item.products.name} with storeId ${storeId}`,
-                        'anyMatch =',
-                        anyMatch
-                    );
+                    // console.log(
+                    //     `Comparing item ${item.products.name} with storeId ${storeId}`,
+                    //     'anyMatch =',
+                    //     anyMatch
+                    // );
 
                     return !anyMatch;
                 })
@@ -282,7 +289,9 @@ const ShoppingListPage: React.FC = () => {
         }
     };
     // Show only stores that have been checked by the user
-    const userStores = allStores.filter((st) => selectedStoreIds.includes(st.id));
+    const userStores = useMemo(() => {
+        return allStores.filter((st) => selectedStoreIds.includes(st.id));
+    }, [allStores, selectedStoreIds]);
 
     return (
         <IonPage>
