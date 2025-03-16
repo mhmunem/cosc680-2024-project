@@ -1,0 +1,36 @@
+services:
+  server:
+    container_name: server
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    develop:
+      watch:
+        - action: rebuild
+          path: ./src
+          target: ./src
+          ignore:
+            - node_modules/
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://server:5000"]
+      interval: 1s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      db_migrate:
+          condition: service_completed_successfully
+    volumes:
+      - ./src:/src
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./.env
+    networks:
+      - project_network
+
+volumes:
+  cosc680-db:
+
+networks:
+  project_network:

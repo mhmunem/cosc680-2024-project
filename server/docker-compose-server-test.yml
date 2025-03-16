@@ -1,0 +1,39 @@
+include:
+  - ./docker-compose-db.yml
+  - ./docker-compose-db-migrate.yml
+
+services:
+  test_server:
+    container_name: test_server
+    tty: true
+    develop:
+      watch:
+        - action: rebuild
+          path: ./tests/
+          target: ./tests/
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./src
+          target: ./src
+          ignore:
+            - node_modules/
+    depends_on:
+      db_migrate:
+          condition: service_completed_successfully
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - ./.env.e2e
+    command: sh -c "rm -rf dist && npm run tests"
+    volumes:
+      - ./src:/src
+    networks:
+      - project_network
+
+volumes:
+  cosc680-db:
+
+networks:
+  project_network:

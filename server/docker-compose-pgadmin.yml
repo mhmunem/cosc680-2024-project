@@ -1,0 +1,20 @@
+services:
+  pgadmin:
+      container_name: pgadmin4
+      image: dpage/pgadmin4
+      tty: true
+      restart: always
+      ports:
+        - "8888:80"
+      env_file:
+        - ./.env
+      volumes:
+        - pgadmin-data:/var/lib/pgadmin
+      networks:
+        - project_network
+
+volumes:
+  pgadmin-data:
+
+networks:
+  project_network:

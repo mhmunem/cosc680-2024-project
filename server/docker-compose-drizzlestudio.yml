@@ -1,0 +1,18 @@
+services:
+  drizzle-kit-studio:
+    container_name: drizzle-kit-studio
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    command: npx drizzle-kit studio --config drizzle.config.ts --host 0.0.0.0
+    ports:
+      - "4983:4983"
+    env_file:
+      - ./.env
+    networks:
+      - project_network
+
+networks:
+  project_network:

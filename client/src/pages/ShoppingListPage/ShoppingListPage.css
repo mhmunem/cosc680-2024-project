@@ -1,0 +1,59 @@
+
+.shopping-list-content {
+  min-height: 100%;
+  background: #fafafa;
+  padding: 1rem;
+  box-sizing: border-box;
+  padding-bottom: 200px; 
+}
+
+.empty-cart-message {
+  text-align: center;
+  margin-top: 4rem;
+  font-size: 1.2rem;
+  color: #666;
+  font-family: "Noto Sans", sans-serif;
+}
+
+ion-grid {
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+ion-col {
+  margin-bottom: 1rem;
+}
+
+
+ion-col ion-button[color="danger"] {
+  margin-top: 2px;
+  width: 100%;
+  --background: #e53935;
+  --color: #fff;
+  font-weight: bold;
+}
+
+.total-price-container {
+  position: fixed;
+  bottom: 1px; 
+  left: 93%;
+  transform: translateX(-50%);
+  width: 10%; 
+  max-width: 600px; 
+  background-color: #fff;
+  padding: 10px 1rem;
+  border-top: 1px solid #ccc;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+  border-radius: 8px; 
+}
+
+.total-price-item {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1rem;
+  font-family: "Noto Sans", sans-serif;
+  color: #333;
+  text-align: right;
+}

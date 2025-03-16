@@ -1,0 +1,22 @@
+.list-unstyled, .list-inline {
+    padding-left: 0;
+    list-style: none;
+}
+
+.text-muted {
+    color: gray !important;
+}
+
+.subtitle{
+    font-size: .85rem;
+}
+
+.title {
+    line-height: 1;
+}
+.store-list{
+    /* columns: 2; */
+}
+.store-name{
+    margin-left: 10px;
+}

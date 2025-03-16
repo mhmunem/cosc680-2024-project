@@ -1,0 +1,7 @@
+include:
+  - ./server/docker-compose-db.yml
+  - ./server/docker-compose-db-migrate.yml
+  # - ./server/docker-compose-drizzlestudio.yml
+  - ./server/docker-compose-server.yml
+  # - ./server/docker-compose-pgadmin.yml
+  - ./client/docker-compose-client.yml

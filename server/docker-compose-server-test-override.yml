@@ -1,0 +1,7 @@
+services:
+  db:
+    env_file:
+        - ./.env.e2e
+  db_migrate:
+    env_file:
+        - ./.env.e2e

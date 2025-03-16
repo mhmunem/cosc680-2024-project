@@ -1,0 +1,45 @@
+include:
+  - ../server/docker-compose-db.yml
+  - ../server/docker-compose-db-migrate.yml
+  - ../server/docker-compose-server.yml
+  - ./docker-compose-client.yml
+
+services:
+  e2e_test:
+    container_name: e2e
+    tty: true
+    build: 
+      context: .
+      dockerfile: Dockerfile.e2e
+    develop:
+      watch:
+        - action: rebuild
+          path: ./src
+          target: ./src
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ../server/src
+          target: ../server/src
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./cypress/e2e
+          target: ./cypress/e2e
+          ignore:
+            - node_modules/
+    depends_on:
+      db:
+        condition: service_healthy
+      client:
+          condition: service_healthy
+      db_migrate:
+        condition: service_completed_successfully
+    working_dir : /e2e
+    volumes:
+      - ./:/e2e
+    networks:
+      - project_network
+
+networks:
+  project_network:

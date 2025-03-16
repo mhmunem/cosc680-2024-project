@@ -1,0 +1,369 @@
+/* General Page Styling */
+ion-header {
+    --opacity: 0.5;
+}
+
+/* search bar syling */
+
+.toolbar {
+    position: relative;
+}
+
+.searchbar {
+    position: relative;
+    margin: 4px auto;
+    width: 70%;
+    max-width: 600px;
+}
+
+
+/* Grid Container of products*/
+.grid-container {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0px auto;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+ion-grid {
+    width: 100%;
+}
+
+/* Product card Styling (outer card) */
+.listCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 0.2em;
+    cursor: pointer;
+}
+
+.listCard:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* product image on search page card */
+.productImage {
+    height: auto;
+    object-fit: cover;
+    border-bottom: 1px solid #e0e0e0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+
+}
+
+/* product card title */
+.one-line-title {
+    font-size: 1rem;
+    margin: 8px 0;
+    font-family: 'Noto Sans';
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+
+/* product card brand text */
+.brandText {
+    font-size: 0.8rem;
+    display: flex;
+    font-weight: 500;
+    flex-direction: column;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    align-items: left;
+    margin-bottom: 5px;
+}
+
+/* product card size text */
+.sizeText {
+    font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    font-weight: 300;
+}
+
+/* product card price text */
+.priceLabel {
+    font-family: 'Noto Sans';
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #4caf50;
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+/* product card product details (everything under the title/photo) */
+.productDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin: auto;
+    gap: 2px;
+    font-family: 'Noto Sans';
+    height: 90px;
+}
+
+/* Quantity Controls (-/+) */
+.quantityControls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+/* Quantity Control (-/+) */
+.controlButton {
+    background-color: #f5f5f5;
+    color: #FFFFFF;
+    border-radius: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-size: 15px;
+}
+
+.controlButton:hover {
+    background-color: #A594F9;
+    color: #fff;
+}
+
+/* Add to List button */
+.add-to-list-button {
+    width: 115px;
+    height: 40px;
+    font-size: 13px;
+    padding: 0;
+    --border-radius: 4px;
+}
+
+/* quantity of added product */
+.quantityText {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+
+/* Pagination container*/
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* pagination numbers */
+.pagination-button {
+    width: 30px;
+    min-width: 30px;
+    text-align: center;
+    font-size: 13px;
+}
+
+/* Container for loading dialogue */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    background: #f8f9fa;
+    color: #444;
+}
+
+.loading-spinner {
+    font-size: 48px;
+    animation: spin 1.5s linear infinite;
+    color: primary;
+}
+
+.loading-message {
+    margin-top: 16px;
+    font-size: 18px;
+    color: #444;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error Message Container */
+.error-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 99, 71, 0.9);
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+}
+
+/* Error Message Text */
+.error-message {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+
+/* Dropdown container */
+.categoryDropdown-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 10px auto;
+    max-width: 650px;
+    flex-wrap: nowrap;
+}
+
+.dropdown {
+    min-width: 300px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Dropdown Items */
+.sortDropdown-item {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+
+.clear-sort-btn,
+.categories-clear-button {
+    margin-left: 5px;
+    margin-right: 2.5px;
+    background-color: #9898f5;
+    color: white;
+    padding: 1px 2px;
+    font-size: 10px;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.2s;
+    height: 18px;
+    line-height: 18px;
+    width: 80px;
+}
+
+.categories-clear-button:hover,
+.clear-sort-btn:hover {
+    background-color: #5252f6;
+    transform: scale(1.05);
+}
+
+.categories-clear-button ion-icon,
+.clear-sort-btn ion-icon {
+    font-size: 7px;
+    vertical-align: middle;
+}
+
+.toolbar-container {
+    position: "relative";
+    /* display: flex; */
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.searchHistory-container {
+    z-index: 1000;
+    margin: 20px auto;
+    width: 70%;
+    max-width: 300px;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 25px;
+    overflow-y: auto;
+}
+
+.no-results-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    font-size: 20px;
+}
+
+/* Media Queries */
+@media (max-width: 761px) {
+
+    /* .listCard {
+        height: 400px;
+    } */
+    .sortDropdown-toggle,
+    .sortDropdown-menu {
+        width: 150px;
+    }
+}
+
+@media (min-width: 761px) {
+    /* .listCard {
+        height: 300px;
+    } */
+}
+
+@media (min-width: 1440px) {
+    .grid-container {
+        max-width: 1300px;
+    }
+
+    /* .listCard {
+        height: 300px;
+    } */
+}
+
+@media (max-width: 767px) {
+    .productDetails {
+        flex-direction: column;
+        height: 140px;
+
+    }
+
+    /* .listCard {
+        height: 420px;
+    } */
+
+    .priceAndQuantity {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .quantityControls {
+        display: flex;
+        justify-content: center;
+    }
+}

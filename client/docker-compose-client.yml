@@ -1,0 +1,33 @@
+services:
+  client:
+    container_name: client
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    develop:
+      watch:
+        - action: rebuild
+          path: ./src
+          target: ./src
+          ignore:
+            - node_modules/
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://client:5173"]
+      interval: 1s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      db_migrate:
+          condition: service_completed_successfully
+    env_file:
+      - ./.env
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./src:/src
+    networks:
+      - project_network
+
+networks:
+  project_network:

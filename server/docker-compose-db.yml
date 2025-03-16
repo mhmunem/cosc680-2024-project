@@ -1,0 +1,25 @@
+services:
+  db:
+    container_name: db
+    image: postgres:17.2
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 1s
+      timeout: 10s
+      retries: 5
+    tty: true
+    restart: always
+    env_file:
+      - ./.env
+    volumes:
+      - cosc680-db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - project_network
+
+volumes:
+  cosc680-db:
+
+networks:
+  project_network:

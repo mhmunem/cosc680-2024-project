@@ -1,0 +1,23 @@
+/* For information on how to create your own theme, please see:
+http://ionicframework.com/docs/theming/ */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&display=swap');
+
+:root {
+    --ion-color-primary: #7371FC;
+    --ion-color-secondary: #A594F9;
+    --ion-color-tertiary: #CDC1FF;
+    --ion-color-success: #71FC73;  /* Default: Green */
+    --ion-color-warning: #ffae00;  /* Default: Orange */
+    --ion-color-danger: #FC7371;   /* Default: Red */
+    --ion-color-dark: #222428;     /* Default: Dark */
+    --ion-color-medium: #E5D9F2;   /* Default: Gray */
+    --ion-color-light: #FFFFFF;    /* Default: Light */
+    --ion-header-background: #A594F9;
+    --ion-font-family: "Noto Sans"
+  }
+
+
+
+  body {
+    font-family: "Noto Sans";  /* Apply Noto Sans globally */
+}

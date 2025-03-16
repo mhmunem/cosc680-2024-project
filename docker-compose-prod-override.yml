@@ -1,0 +1,24 @@
+
+services:
+  db:
+    env_file:
+      - ./server/.env.prod
+  db_migrate:
+    command: sh -c 'npm run db:create && npm run db:generate && npm run db:push && exit'
+    # command: echo skip
+    env_file:
+      - ./server/.env.prod
+    build:
+      dockerfile: ./Dockerfile.migrate
+  client:
+    ports:
+      - "5173:5173"
+  web_scraper:
+    env_file:
+      - ./server/.env.prod
+  # drizzle-kit-studio:
+  #   env_file:
+  #     - ./server/.env.prod
+  server:
+    env_file:
+      - ./server/.env.prod

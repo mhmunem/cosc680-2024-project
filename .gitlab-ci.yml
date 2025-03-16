@@ -1,0 +1,59 @@
+stages:
+  - ok
+
+setup:
+  stage: ok
+  image: alpine:3.21.2
+  script:
+    - echo success
+
+# stages:
+#   - setup
+#   - lint
+#   - test
+#   - test-coverage
+#   # - e2e
+#
+# setup:
+#   stage: setup
+#   image: node:22.12.0
+#   cache:
+#     paths:
+#       - './**/node_modules/'
+#   script:
+#     - npm run install-everything
+#   artifacts:
+#     expire_in: 1 days
+#     paths:
+#       - './**/node_modules/'
+#     when: on_success
+#
+# test_coverage_client:
+#   stage: test-coverage
+#   image: node:22.12.0
+#   script:
+#     - cd client
+#     - npm run test:ci
+#   coverage: '/All\sfiles.*?\s+(\d+.\d+)/'
+#
+# test_coverage_server:
+#   stage: test-coverage
+#   image: node:22.12.0
+#   script:
+#     - cd server
+#     - npm run test:ci
+#   coverage: '/All\sfiles.*?\s+(\d+.\d+)/'
+#
+# client-test:
+#   stage: test
+#   image: node:22.12.0
+#   script:
+#     - cd client
+#     - npm run test
+#
+# server-test:
+#   stage: test
+#   image: node:22.12.0
+#   script:
+#     - cd server
+#     - npm run test

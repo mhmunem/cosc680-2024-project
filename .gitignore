@@ -1,0 +1,48 @@
+.vs
+
+
+**/package-lock.json
+**/drizzle/
+**/.vscode/
+**/dist/
+
+*.env
+*.env.e2e
+*.env.prod
+
+
+# dependencies
+**/node_modules/
+**/.pnp
+*.pnp.js
+
+# testing
+**/coverage/
+
+# production
+**/dist
+
+# misc
+*.DS_Store
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+**/.nx
+**/.nx/cache
+**/.vscode/*
+!/.vscode/extensions.json
+*.idea
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Optional eslint cache
+*.eslintcache
+
+# IDE config files
+org.eclipse.buildship.core.prefs
+
+# Cypress
+**/cypress/screenshots/

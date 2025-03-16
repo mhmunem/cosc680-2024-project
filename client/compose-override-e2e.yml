@@ -1,0 +1,10 @@
+services:
+  server:
+    env_file:
+        - ../server/.env.e2e
+  db_migrate:
+    env_file:
+        - ../server/.env.e2e
+  client:
+    env_file:
+        - ./.env.e2e
